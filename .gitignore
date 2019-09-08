@@ -1,0 +1,4 @@
+venv/
+.env
+yts_movie_list.txt
+.vscode/
