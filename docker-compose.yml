@@ -13,7 +13,7 @@ services:
                 org.springframework.web: WARN
                 sh.strm: DEBUG
         schedule:
-            - every: 6 hours
+            - every: 12 hours
               task: yts_bot
         tasks:
             docker:
