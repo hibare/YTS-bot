@@ -1,10 +1,31 @@
-version: "3"
+version: "3.7"
 services:
-  watchtower:
-    image: v2tec/watchtower
-    env_file:
-      - .env
+  tasker:
+    image: strm/tasker
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 30
-    restart: always
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    environment:
+      configuration: |
+        logging:
+            level:
+                ROOT: WARN
+                org.springframework.web: WARN
+                sh.strm: DEBUG
+        schedule:
+            - every: 6 hours
+              task: yts_bot
+        tasks:
+            docker:
+                - name: yts_bot
+                  image: python:3
+                  script-strict: true
+                  script:
+                    - cd /app
+                    - pip install -r requirements.txt
+                    - python3 yts_bot.py
+                  # script: >
+                  #   bash -c "cd /app
+                  #     && pip install -r requirements.txt
+                  #     && python3 yts_bot.py"
+                  volumes:
+                    - /home/ultron/Documents/tmp/Projects/YTS-bot/src:/app
