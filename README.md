@@ -100,4 +100,4 @@ Start stack using following command.
 docker-compose up
 ```
 
-:exclamation: All cron jobs are scheduled t run ever 12 hours.
+:exclamation: All cron jobs are scheduled to run ever 12 hours.
