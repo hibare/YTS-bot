@@ -1,5 +1,7 @@
 FROM python:3
 
+LABEL author="Hibare (docker@hibare.in)"
+
 # Install cron
 RUN apt-get update
 RUN apt-get install cron -y
