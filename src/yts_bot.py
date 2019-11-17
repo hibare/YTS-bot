@@ -1,9 +1,18 @@
+#!/usr/bin/env python3
+
 import requests
 from bs4 import BeautifulSoup
 from decouple import config
 import json
+import logging
+
+# Configure and create a logger
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s') 
+logger = logging.getLogger("YTS Bot")
+logger.setLevel(logging.DEBUG) 
 
 def send_notification(text):
+	logger.info("Sending slack notification, data=%s", text)
 	slack_endpoint = config('SLACK_ENDPOINT')
 	headers = {
         	'Content-type': 'application/json',
@@ -17,6 +26,7 @@ def send_notification(text):
 
 
 def main():
+	logger.info("Starting run")
 	url = "https://yst.am/"
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0'
@@ -25,6 +35,8 @@ def main():
 
 	response = requests.get(url, headers = headers)
 	
+	logger.info("Received respose=%s for URL=%s", response.status_code, url)
+
 	# retrieve content from website
 	if response.status_code == 200:
 		soup = BeautifulSoup(response.content, 'html.parser')
@@ -48,6 +60,8 @@ def main():
 				}
 			)
 		
+		logger.info("Extracted movies=%s", extracted_movies_dict.keys())
+
 		# retrieve existing movies
 		try:
 			with open(stored_movie_list_filename) as f:
@@ -69,12 +83,15 @@ def main():
 					)
 
 				response_code = send_notification(text)
+				logger.info("Received notification respose=%s for movie=%s", response_code, new_movie)
+
 				if str(response_code).startswith(('2')):
 					notification_response_dict.update({
 						new_movie: response_code
 					})
 
 			# update the tracker file
+			logger.info("Updating tracker file with movies=%s", notification_response_dict.keys())
 			if notification_response_dict:
 				with open(stored_movie_list_filename, 'a') as f:
 					movie_names = notification_response_dict.keys()
@@ -82,10 +99,10 @@ def main():
 					f.write("\n")
 
 		else:	
-			print("No new movies found")
+			logger.info("No new movies found")
 		
 	else:
-		print("Got response %s" % (response.status_code))
+		logger.info("Got response %s" % (response.status_code))
 
 if __name__ == "__main__":
 	main()
