@@ -23,9 +23,5 @@ services:
                     - cd /app
                     - pip install -r requirements.txt
                     - python3 yts_bot.py
-                  # script: >
-                  #   bash -c "cd /app
-                  #     && pip install -r requirements.txt
-                  #     && python3 yts_bot.py"
                   volumes:
-                    - /home/ultron/Documents/tmp/Projects/YTS-bot/src:/app
+                    - <absolute path to src>/src:/app
