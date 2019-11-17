@@ -10,4 +10,4 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         issue-message: 'Thank you for submitting an issue. Issue will be reviewed and acted upon soon'
-        pr-message: 'Thank you submittng PR. PR will be reviewed and merged'
+        pr-message: 'Thank you for submittng PR. PR will be reviewed and merge'
