@@ -7,24 +7,11 @@ RUN apt-get install cron -y
 # Add source directory
 ADD src /app
 
-# Install requirements
-RUN pip3 install -r /app/requirements.txt
+# Install requirements in custom directory
+RUN mkdir /app/python_modules
+RUN pip3 install -r /app/requirements.txt --target=/app/python_modules
 
-# # Grant execution rights
-# RUN chmod +x /app/yts_bot.py
-
-# # Grant execution rights
-# RUN chmod +x /app/script.sh
-
-# # Add crontab file in the cron directory
-# ADD src/crontab /etc/cron.d/yts-cron
-
-# # Grant execution rights on the cron job
-# RUN chmod 0644 /etc/cron.d/yts-cron
-
-# # Create the log file to be able to run tail
-# RUN touch /var/log/cron.log
-
+# Create cron entry
 RUN crontab /app/crontab
 
 # Run the command on container startup

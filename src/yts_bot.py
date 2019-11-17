@@ -7,10 +7,8 @@ import json
 import logging
 
 # Configure and create a logger
-logging.basicConfig(filename="app.log",
-					filemode="a",
-					format='%(asctime)s - %(name)s - %(levelname)s - %(message)s') 
-logger = logging.getLogger("YTS Bot")
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s') 
+logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG) 
 
 def send_notification(text):
