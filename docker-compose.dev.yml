@@ -1,10 +1,10 @@
 version: "3.7"
 services:
   yts_bot:
-    image: hibare/yts_bot
+    build:
+      context: .
     container_name: yts_bot
     hostname: yts_bot
-    restart: always
     environment:
       - SLACK_ENDPOINT=<your value>
 

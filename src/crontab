@@ -1,2 +1,0 @@
-
-0 */12 * * * cd /app && export PYTHONPATH=/app/python_modules && python3 yts_bot.py > /proc/1/fd/1 2>/proc/1/fd/2

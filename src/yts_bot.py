@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
+import json
+import logging
 import requests
 from bs4 import BeautifulSoup
 from decouple import config
-import json
-import logging
+from apscheduler.schedulers.blocking import BlockingScheduler
 
 # Configure and create a logger
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s') 
@@ -25,7 +26,7 @@ def send_notification(text):
 	return response.status_code
 
 
-def main():
+def yts():
 	logger.info("Starting run")
 	urls = ["https://yst.am/", "https://yts.vc/", "https://yts.lt/"]
 	headers = {
@@ -104,6 +105,20 @@ def main():
 			
 		else:
 			logger.info("Got response %s" % (response.status_code))
+
+
+def main():
+
+    shed = BlockingScheduler()
+    
+    logger.info("Adding job")
+    shed.add_job(yts, 'interval', hours=4)
+
+    try:
+        logger.info("Starting scheduler")
+        shed.start()
+    except Exception:
+        print("failed")
 
 if __name__ == "__main__":
 	main()
