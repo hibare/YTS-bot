@@ -23,9 +23,6 @@ ENV PATH="/opt/venv/bin:$PATH"
 # Add source directory
 ADD src /app
 
-# Install requirements 
-RUN pip3 install -r /app/requirements.txt
-
 WORKDIR /app
 
 # Run the command on container startup
