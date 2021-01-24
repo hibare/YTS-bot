@@ -5,9 +5,8 @@ LABEL author="Hibare (docker@hibare.in)"
 # Add source directory
 ADD src /app
 
-# Install requirements in custom directory
-RUN mkdir /app/python_modules
-RUN pip3 install -r /app/requirements.txt --target=/app/python_modules
+# Install requirements 
+RUN pip3 install -r /app/requirements.txt
 
 WORKDIR /app
 
