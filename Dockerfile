@@ -12,4 +12,4 @@ RUN pip3 install -r /app/requirements.txt --target=/app/python_modules
 WORKDIR /app
 
 # Run the command on container startup
-CMD ["python", "yts.py"]
+CMD ["python", "yts_bot.py"]
