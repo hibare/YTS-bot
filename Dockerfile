@@ -1,22 +1,6 @@
-# Build
-
-FROM python:3-alpine as build
-
-RUN python3 -m venv /opt/venv
-
-ENV PATH="/opt/venv/bin:$PATH"
-
-COPY src/requirements.txt /requirements.txt
-
-RUN pip install -r /requirements.txt
-
-# Release
-
-FROM python:3-alpine as release
+FROM python:3-alpine 
 
 LABEL Github="hibare"
-
-COPY --from=build /opt/venv /opt/venv
 
 ENV PATH="/opt/venv/bin:$PATH"
 
@@ -24,6 +8,8 @@ ENV PATH="/opt/venv/bin:$PATH"
 ADD src /app
 
 WORKDIR /app
+
+RUN pip install -r requirements.txt
 
 # Run the command on container startup
 CMD ["python", "yts_bot.py"]
