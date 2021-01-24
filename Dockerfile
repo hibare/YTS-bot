@@ -1,6 +1,6 @@
 # Build
 
-FROM python:3.9-alpine as build
+FROM python:3-alpine as build
 
 RUN apk add libxml2-dev libxslt-dev gcc libc-dev
 
@@ -14,7 +14,7 @@ RUN pip install -r /requirements.txt
 
 # Release
 
-FROM python:3.9-alpine as release
+FROM python:3-alpine as release
 
 LABEL Github="hibare"
 
