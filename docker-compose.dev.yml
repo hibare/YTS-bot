@@ -7,4 +7,6 @@ services:
     hostname: yts_bot
     environment:
       - SLACK_ENDPOINT=<your value>
+      - INTERVAL=1 #Optinal, default=12 hours
+
 

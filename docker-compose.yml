@@ -7,4 +7,8 @@ services:
     restart: always
     environment:
       - SLACK_ENDPOINT=<your value>
-
+      - INTERVAL=12 #Optinal, default=12 hours
+    volumes:
+      - yts_movie_list:/app/yts_movie_list.txt
+volumes:
+  yts_movie_list:

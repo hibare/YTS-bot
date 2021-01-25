@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 import json
 import logging
 import requests
@@ -110,9 +111,19 @@ def yts():
 def main():
 
     shed = BlockingScheduler()
+
+    interval = config("INTERVAL", 12, cast=int)
+    slack_endpoint = config("SLACK_ENDPOINT", None)
+
+    if slack_endpoint is None:
+        logger.error("Slack endpoint not configured")
+        sys.exit(1)
+
     
     logger.info("Adding job")
-    shed.add_job(yts, 'interval', hours=4)
+    logger.info("Interval=%s", interval)
+
+    shed.add_job(yts, 'interval', hours=interval)
 
     try:
         logger.info("Starting scheduler")
