@@ -84,20 +84,4 @@ Run the container using following command.
 docker run -d -v $PWD/.env:/app/.env -v $PWD/history:/app/yts_movie_list.txt hibare/yts_bot:latest
 ```
 
-### Run using tasker
-
-tasker is a docker image to schedule the execution of the containers. Its kind of cron for docker container execution.
-
-Rename file `.env.example` to `.env` (under `src`).
-
-Populate enviroment variables memntioned in `.env`
-
-Replace `<absolute path to src>` with absolute path to the `src` directory in file `docker-compose.yml`.
-
-Start stack using following command.
-
-```shell
-docker-compose up
-```
-
 :exclamation: All cron jobs are scheduled to run every 12 hours.
