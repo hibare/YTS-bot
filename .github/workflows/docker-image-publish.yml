@@ -1,32 +1,37 @@
-name: Publish Releases to Hub
+name: Docker image publish
 
 # When its time to do a release do a full cross platform build for all supported
 # architectures and push all of them to Docker Hub.
 # Only trigger on semver shaped tags.
 on:
   push:
-    branches: 
-      - master
+    tags:
+      - '*'
 
 jobs:
-  dockerhub-publish:
+  docker-image-publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Prepare
-        id: prep
-        run: |
-          DOCKER_IMAGE=hibare/yts_bot
-          VERSION=latest
-          TAGS="${DOCKER_IMAGE}:${VERSION}"
-          echo ::set-output name=tags::${TAGS}
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            hibare/yts_bot
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
         with:
           platforms: all
-
+          
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
@@ -52,7 +57,7 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.prep.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
