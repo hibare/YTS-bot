@@ -1,5 +1,9 @@
 # YTS Bot
 
+[![Docker Hub](https://img.shields.io/docker/pulls/hibare/yts_bot)](https://hub.docker.com/r/hibare/yts_bot)
+[![Docker image size](https://img.shields.io/docker/image-size/hibare/yts_bot/latest)](https://hub.docker.com/r/hibare/yts_bot) 
+[![GitHub issues](https://img.shields.io/github/issues/hibare/YTS-bot)](https://github.com/hibare/hibare/YTS-bot)
+
 A Python 3 script to monitor for `Popular Downloads` on YTS and send notifications via Slack.
 
 Script uses web scrapping methodology to check for popular downloads.
