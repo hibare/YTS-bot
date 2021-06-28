@@ -4,12 +4,10 @@
 #
 #    pip-compile
 #
---trusted-host pypi.org
-
 apscheduler==3.7.0
-    # via -r requirements.in
-beautifulsoup4==4.8.1
-    # via -r requirements.in
+    # via -r src/requirements.in
+beautifulsoup4==4.9.3
+    # via -r src/requirements.in
 certifi==2019.9.11
     # via requests
 chardet==3.0.4
@@ -17,11 +15,11 @@ chardet==3.0.4
 idna==2.8
     # via requests
 python-decouple==3.3
-    # via -r requirements.in
+    # via -r src/requirements.in
 pytz==2020.5
     # via apscheduler
 requests==2.22.0
-    # via -r requirements.in
+    # via -r src/requirements.in
 six==1.16.0
     # via apscheduler
 soupsieve==1.9.5
