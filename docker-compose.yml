@@ -9,6 +9,6 @@ services:
       - SLACK_ENDPOINT=<your value>
       - INTERVAL=12 #Optinal, default=12 hours
     volumes:
-      - yts_movie_list:/app/yts_movie_list.txt
+        - yts_data:/data
 volumes:
-  yts_movie_list:
+  yts_data:
