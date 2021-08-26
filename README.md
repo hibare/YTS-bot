@@ -59,6 +59,8 @@ To periodically check for popular downloads, schedule the script using cron.
 
 ### Run in docker container
 
+#### Docker run
+
 Pull the latest docker image from Docker Hub using following command.
 
 ```shell
@@ -87,5 +89,26 @@ Run the container using following command.
 ```shell
 docker run -d -v $PWD/.env:/app/.env -v $PWD/history:/app/yts_movie_list.txt hibare/yts_bot:latest
 ```
+#### Docker compose
 
-:exclamation: All cron jobs are scheduled to run every 12 hours.
+```
+version: "3.7"
+services:
+  yts_bot:
+    image: hibare/yts_bot
+    container_name: yts_bot
+    hostname: yts_bot
+    restart: always
+    environment:
+      - SLACK_ENDPOINT=<your value>
+      - INTERVAL=12 #Optinal, default=12 hours
+    volumes:
+        - yts_data:/data
+volumes:
+  yts_data:
+
+```
+
+Update `SLACK_ENDPOINT` environment variable with Slack webhook URL.
+
+:exclamation: By default all cron jobs are scheduled to run every 12 hours.
