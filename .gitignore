@@ -4,3 +4,5 @@ yts_movie_list.txt
 .vscode/
 *.log
 .vscode
+scripts
+data
