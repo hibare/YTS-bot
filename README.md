@@ -87,7 +87,7 @@ SLACK_ENDPOINT=<your value here>
 Run the container using following command.
 
 ```shell
-docker run -d -v $PWD/.env:/app/.env -v $PWD/history:/app/yts_movie_list.txt hibare/yts_bot:latest
+docker run -d -v $PWD/.env:/app/.env -v $PWD/data:/data hibare/yts_bot:latest
 ```
 #### Docker compose
 
