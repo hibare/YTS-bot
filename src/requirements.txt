@@ -6,13 +6,13 @@
 #
 --trusted-host pypi.org
 
-apscheduler==3.7.0
+apscheduler==3.8.0
     # via -r requirements.in
-beautifulsoup4==4.9.3
+beautifulsoup4==4.10.0
     # via -r requirements.in
 certifi==2021.5.30
     # via requests
-charset-normalizer==2.0.3
+charset-normalizer==2.0.6
     # via requests
 idna==3.2
     # via requests
@@ -28,7 +28,7 @@ soupsieve==2.2.1
     # via beautifulsoup4
 tzlocal==2.1
     # via apscheduler
-urllib3==1.26.6
+urllib3==1.26.7
     # via requests
 
 # The following packages are considered to be unsafe in a requirements file:
