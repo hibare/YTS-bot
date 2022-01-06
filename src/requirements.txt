@@ -4,12 +4,10 @@
 #
 #    pip-compile requirements.in
 #
---trusted-host pypi.org
-
 apscheduler==3.8.1
-    # via -r requirements.in
+    # via -r src/requirements.in
 beautifulsoup4==4.10.0
-    # via -r requirements.in
+    # via -r src/requirements.in
 certifi==2021.5.30
     # via requests
 charset-normalizer==2.0.6
@@ -17,11 +15,11 @@ charset-normalizer==2.0.6
 idna==3.2
     # via requests
 python-decouple==3.5
-    # via -r requirements.in
+    # via -r src/requirements.in
 pytz==2021.3
     # via apscheduler
-requests==2.26.0
-    # via -r requirements.in
+requests==2.27.1
+    # via -r src/requirements.in
 six==1.16.0
     # via apscheduler
 soupsieve==2.2.1
