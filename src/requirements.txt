@@ -20,7 +20,7 @@ charset-normalizer==2.0.10
     # via requests
 idna==3.3
     # via requests
-python-decouple==3.5
+python-decouple==3.6
     # via -r requirements.in
 pytz==2021.3
     # via apscheduler
