@@ -1,5 +1,7 @@
 # YTS Bot
 
+**This repository is archived in favor of [go-yts](https://github.com/hibare/go-yts)**
+
 [![Docker Hub](https://img.shields.io/docker/pulls/hibare/yts_bot)](https://hub.docker.com/r/hibare/yts_bot)
 [![Docker image size](https://img.shields.io/docker/image-size/hibare/yts_bot/latest)](https://hub.docker.com/r/hibare/yts_bot) 
 [![GitHub issues](https://img.shields.io/github/issues/hibare/YTS-bot)](https://github.com/hibare/hibare/YTS-bot)
